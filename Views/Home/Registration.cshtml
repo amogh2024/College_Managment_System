@@ -1,0 +1,264 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/CollegLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="candidates-resume-content">
+            <form class="resume-info">
+                <h3>Student basic information</h3>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Student's Full Name</label>
+                            <input id="txt_StudentName" class="form-control" type="text" name="First-Name" onkeypress="return onlyAlphabets(event,this);">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Degree level</label>
+                            <select class="form-control" id="Degreelevel">
+                                <option value="select">Select Degree level</option>
+                                <option value="First Class">First Class</option>
+                                <option value="Second Class">Second Class</option>
+                                <option value="Third Class">Third Class</option>
+                            </select>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div align="center" style="height: 120px; width: 130px; float: left; padding: 2px; box-shadow: 1px 1px 3px #DBDBDB; border: 1px solid #CCCCCC; text-decoration: underline;">
+                            <img src="~/Edu/Images/Blank_Person.jpg" id="photo_preview" style="height: 120px; width: 130px;">
+
+                        </div>
+                        <div style="float: left;">
+                            <label for="img">Student photo</label>
+                            <input type="file" name="StudentPhoto" id="StudentPhoto" style="font-size:10px;" onchange="readPhoto(this)" />
+
+                        </div>
+                        <input type="hidden" id="hidden_Photo_Path" />
+
+
+                        @*<div class="form-group">
+                                <label for="img">Student photo</label>
+                                <input type="file" class="form-control" id="StudentPhoto" name="img" accept="image/*">
+                            </div>*@
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div align="center" style=" height: 120px; width: 160px; margin: 20px; float: left; padding: 2px; box-shadow: 1px 1px 3px #DBDBDB; border: 1px solid #CCCCCC;">
+                            <img id="sign_preview" name="file" src="~/Edu/Images/File.jpg" style="height:120px;width:160px;" />
+
+                        </div>
+                        <div style="float: left;">
+                            <label for="img">Upload passport or birth documentation</label>
+
+                            <input type="file" name="imgdocumentation" id="imgdocumentation" style="font-size:10px;text-decoration:none;" onchange="readSign(this)" />
+
+                        </div>
+                        <input type="hidden" id="hidden_Document_Path" />
+                        @*<div class="form-group">
+                                <label for="img">Upload passport or birth documentation</label>
+                                <input type="file" class="form-control" id="imgdocumentation" name="imgdocumentation" accept="image/*">
+                            </div>*@
+                    </div>
+
+                    <p>Photo Must be in Passport (PP) Size. Max Upload Size 256KB</p>
+                </div>
+
+                <h3>Student personal information</h3>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Father's name</label>
+                            <input id="txtFatherName" type="text" class="form-control" name="Father" onkeypress="return onlyAlphabets(event,this);">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Mother's name</label>
+                            <input id="txtMotherName" type="text" class="form-control" name="Mother" onkeypress="return onlyAlphabets(event,this);">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Contact no</label>
+                            <input maxlength="10" id="txtMobileNo" type="text" class="form-control" name="contact" onkeypress="return isNumberKey(event)">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input id="txtEmail" onchange="checkmail(this)" type="email" class="form-control" name="email">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Present address</label>
+                            <input id="Presentaddress" type="text" class="form-control" name="address">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Date Of Barth</label>
+                            <td>
+                                @* <label> DATE OF BIRTH : <span>*</span></label>*@
+                                <SELECT id="ddlyyyy" name="ddlyyyy" onchange="change_year(this)">
+                                </SELECT>
+                                <SELECT id="DDLMM" name="mm" onchange="change_month(this)">
+                                </SELECT>
+                                <SELECT id="ddldd" name="dd">
+                                </SELECT>
+                                <br />
+                                <br />
+                            </td>
+                            @*<div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Date Of Barth</label>
+                                    <div class="input-group date" id="datetimepicker">
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-addon"></span>
+                                        <i class="bx bx-calendar"></i>
+                                    </div>*@
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>National ID</label>
+                            <input id="national" type="text" class="form-control" name="national">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Student type</label>
+                            <select class="form-control" id="Studenttype">
+                                <option value="0">Select Student Type</option>
+                                <option value="First Class">First Class</option>
+                                <option value="Second Class">Second Class</option>
+                                <option value="Third Class">Third Class</option>
+                            </select>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Student academic information</h3>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>School</label>
+                            <input id="Schoolname" class="form-control" type="text" name="School">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Year of completion</label>
+                                <SELECT id="ddlyyyycom" name="ddlyyyycom">
+                                </SELECT>
+                                @*<div class="input-group date" id="datetimepicker-2">
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-addon"></span>
+                                        <i class="bx bx-calendar"></i>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Highest qualification</label>
+                            <input id="qualification" type="text" class="form-control" name="qualification">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Current status</label>
+                            <select class="form-control" id="Currentstatus">
+                                <option value="0">Select Current status</option>
+                                <option value="Student">Student</option>
+                                <option value="Worker">Worker</option>
+                            </select>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label>Select area of study</label>
+                            <input id="stdlocation" type="text" class="form-control" name="study">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-12">
+
+                        <button type="button" value="Save & Proceed" id="btnSubmit" class="btn btn-info">Save & Proceed</button>
+                        @*<input type="submit" name="btnSubmit" value="Save & Proceed" onclick="return validate();" id="btnSubmit" class="btn btn-info">*@
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode == 8 || charCode == 32))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+    </script>
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script> 
+    <script src="~/Registration_Js/Registration.js"></script>
+</body>
+</html>
+
+
