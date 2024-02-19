@@ -39,7 +39,7 @@ Authentication: JSON Web Tokens (JWT)
 
 Setup Instructions
 
-Clone the repository: git clone https://github.com/amogh2024/college-management-system.git
+Clone the repository: git clone https://github.com/amogh2024/College_Managment_System
 
 Contributing
 
