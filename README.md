@@ -49,9 +49,13 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 Fork the repository
 
 Create a new branch: git checkout -b feature/new-feature
+
 Make your changes and commit them: git commit -m 'Add new feature'
+
 Push to the branch: git push origin feature/new-feature
+
 Submit a pull request
+
 Please ensure that your pull request adheres to the code style and conventions used in the project.
 
 License
